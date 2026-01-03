@@ -9,12 +9,13 @@ import os
 # 'title_tag': the tag inside that wrapper for the headline
 SOURCES = [
    {
-    "id": "adaderana_tamil",
+    "id": "adaderana_tamil_new",
     "name": "Ada Derana Tamil",
-    "url": "https://tamil.adaderana.lk/categories/breakingnews",
-    "container": "div.mt-4",
-    "title_tag": "p.font-medium",
-    "base_url": "https://tamil.adaderana.lk"
+    "url": "https://adaderanatamil.lk/",
+    "container": "div.group",
+    "title_tag": "p.font-bold",
+    "desc_tag": "p.line-clamp-2:not(.font-bold)", # Targets description but skips title
+    "date_tag": "p.text-grey-datetext"
 }
     # {
     #     "id": "lankatruth_politics",
@@ -79,3 +80,6 @@ def generate_rss(source):
 if __name__ == "__main__":
     for s in SOURCES:
         generate_rss(s)
+
+
+        # .github/workflows/update_feeds.yml
