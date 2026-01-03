@@ -20,7 +20,7 @@ jobs:
         run: pip install requests beautifulsoup4 PyRSS2Gen
 
       - name: Run All Scrapers
-        run: python scraper.py
+        run: python scraper_enginer.py
 
       - name: Upload to GitHub
         run: |
