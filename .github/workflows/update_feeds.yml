@@ -1,0 +1,31 @@
+name: News Scraper Bot
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs exactly every hour. Change to '*/30 * * * *' for 30 mins.
+  workflow_dispatch: # Allows you to trigger it manually for testing
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Tools
+        run: pip install requests beautifulsoup4 PyRSS2Gen
+
+      - name: Run All Scrapers
+        run: python scraper_enginer.py
+
+      - name: Upload to GitHub
+        run: |
+          git config --global user.name "News-Bot"
+          git config --global user.email "bot@newsapp.com"
+          git add feeds/*.xml
+          git commit -m "Updated all 30 news feeds" || exit 0
+          git push
